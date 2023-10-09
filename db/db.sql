@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS produtos
 INSERT INTO usuarios 
   (nome, email, senha)
 VALUES
-    ('Luiz', 'luiz@techmart.com', '5f36e59804895e9e784714154c9b5d86'),
-    ('Rodrigo', 'rodrigo@techmart.com', '68ff4a8e8e599b637b9a83e1ad2db3b6');
+    ('Luiz', 'luiz@techmart.com', 'e10adc3949ba59abbe56e057f20f883e'),
+    ('Rodrigo', 'rodrigo@techmart.com', 'e10adc3949ba59abbe56e057f20f883e');
 
 INSERT INTO produtos 
   (nome, descricao, preco)
