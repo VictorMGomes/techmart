@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    env_file:
+      - .env
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d"
+    ports:
+      - 3306:3306
+    networks:
+      - lamp-docker
+
+  www:
+    depends_on:
+      - db
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./app:/var/www/html"
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - lamp-docker
+
+networks:
+  lamp-docker:

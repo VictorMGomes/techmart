@@ -1,0 +1,21 @@
+{
+    "name": "victormgomes/techmart",
+    "description": "Projeto de teste de seleção Desenvolvedor(a) Back End SonarTrade",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Victor Gomes",
+            "email": "victorvhmgomes@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "scripts": {
+    }
+}
