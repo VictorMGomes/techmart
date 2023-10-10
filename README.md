@@ -20,6 +20,7 @@ Docker
 
 ### Passo 1: Clonar o Repositório
 git clone https://github.com/VictorMGomes/techmart.git
+
 cd techmart
 
 ### Passo 2: Configurar as váriaveis para configuração dos containers
