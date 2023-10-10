@@ -1,6 +1,6 @@
 {
     "name": "victormgomes/techmart",
-    "description": "Projeto de teste de seleção Desenvolvedor(a) Back End SonarTrade",
+    "description": "API de CRUD de produtos de uma empresa de comércio eletrônico",
     "type": "project",
     "license": "MIT",
     "authors": [

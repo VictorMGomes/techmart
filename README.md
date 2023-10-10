@@ -23,7 +23,7 @@ git clone https://github.com/VictorMGomes/techmart.git
 
 cd techmart
 
-### Passo 2: Configurar as váriaveis para configuração dos containers
+### Passo 2: Configurar as váriaveis para configuração do ambiente LAMP dockerizado
 cp .env.example .env
 
 ### Passo 3: Configurar as váriaveis de ambiente da API
