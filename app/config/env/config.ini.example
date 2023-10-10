@@ -2,6 +2,9 @@
 DB_TYPE = mysql
 DB_HOST = db
 DB_CHARSET = utf8
-DB_USER = 
-DB_PASS = 
-DB_NAME = 
+DB_USER = techmart_user
+DB_PASS = techmart_pwd
+DB_NAME = techmart_db
+
+[jwt]
+SECRET = fs12kio@

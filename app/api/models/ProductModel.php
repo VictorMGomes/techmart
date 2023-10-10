@@ -7,7 +7,6 @@ class ProductModel {
     }
 
     public function createProduct($data) {
-        // Lógica para criar um novo produto no banco de dados
         $nome = $data['nome'];
         $descricao = $data['descricao'];
         $preco = $data['preco'];
@@ -26,7 +25,6 @@ class ProductModel {
     }
 
     public function getProducts() {
-        // Lógica para obter a lista de produtos do banco de dados
         $query = "SELECT * FROM produtos";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -34,7 +32,6 @@ class ProductModel {
     }
 
     public function getProduct($id) {
-        // Lógica para obter um produto específico do banco de dados
         $query = "SELECT * FROM produtos WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $id);
@@ -43,7 +40,6 @@ class ProductModel {
     }
 
     public function updateProduct($id, $data) {
-        // Lógica para atualizar um produto no banco de dados
         $nome = $data['nome'];
         $descricao = $data['descricao'];
         $preco = $data['preco'];
@@ -63,7 +59,6 @@ class ProductModel {
     }
 
     public function deleteProduct($id) {
-        // Lógica para excluir um produto do banco de dados
         $query = "DELETE FROM produtos WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $id);

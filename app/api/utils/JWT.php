@@ -1,6 +1,13 @@
 <?php
+include_once __DIR__."/../../config/env/IniLoader.php";
+
 class JWTUtil {
-    private $key = "sua_chave_secreta";
+    private $key;
+    
+    public function __construct() {
+        $envLoader = new IniLoader(__DIR__."/../../config/env/config.ini");
+        $this->key = $envLoader->get('jwt', 'SECRET');
+    }
 
     public function generateToken($data) {
         $header = base64_encode(json_encode(['alg' => 'HS256', 'typ' => 'JWT']));

@@ -1,5 +1,5 @@
 <?php
-include __DIR__."/../env/IniLoader.php";
+include_once __DIR__."/../env/IniLoader.php";
 
 class DatabaseConnection
 {   

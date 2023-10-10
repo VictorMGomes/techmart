@@ -1,8 +1,6 @@
 <?php
-
 require_once __DIR__."/../models/UserModel.php";
 require_once __DIR__."/../utils/JWT.php";
-
 
 class AuthController {
     private $db;
@@ -17,24 +15,31 @@ class AuthController {
 
     public function generateToken($email, $senha) {
         $user = $this->userModel->getUserByEmail($email);
-    
+
         if ($user && $user['senha'] === md5($senha)) {
             $tokenData = array(
                 "id" => $user['id'],
                 "nome" => $user['nome'],
                 "email" => $user['email']
             );
-    
+
             $token = $this->jwtUtil->generateToken($tokenData);
             return $token;
         } else {
             return false;
         }
     }
-    
 
     public function verifyToken($token) {
         return $this->jwtUtil->verifyToken($token);
+    }
+
+    public function getBearerToken() {
+        $headers = getallheaders();
+        if (isset($headers['Authorization'])) {
+            return trim(str_replace("Bearer ", "", $headers['Authorization']));
+        }
+        return null;
     }
 }
 ?>

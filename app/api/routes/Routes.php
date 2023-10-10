@@ -33,12 +33,10 @@ $router->add('POST', '/gerar-token', function () use ($authController) {
     echo json_encode(array("mensagem" => "Falha na autenticação."));
 });
 
-$router->add('POST', '/produtos', function () use ($productController) {
+$router->add('POST', '/produtos', function () use ($productController, $authController) {
     $data = json_decode(file_get_contents("php://input"), true);
-    
-    // Verifique a autenticação do token
-    $token = getBearerToken();
-    if (!$productController->verifyToken($token)) {
+    $token = $authController->getBearerToken();
+    if (!$authController->verifyToken($token)) {
         http_response_code(401);
         echo json_encode(array("mensagem" => "Token de autenticação inválido."));
         return;
@@ -54,9 +52,9 @@ $router->add('POST', '/produtos', function () use ($productController) {
     }
 });
 
-$router->add('GET', '/produtos', function () use ($productController) {
-    $token = getBearerToken();
-    if (!$productController->verifyToken($token)) {
+$router->add('GET', '/produtos', function () use ($productController, $authController) {
+    $token = $authController->getBearerToken();
+    if (!$authController->verifyToken($token)) {
         http_response_code(401);
         echo json_encode(array("mensagem" => "Token de autenticação inválido."));
         return;
@@ -67,9 +65,9 @@ $router->add('GET', '/produtos', function () use ($productController) {
     echo json_encode($products);
 });
 
-$router->add('GET', '/produtos/{id:\d+}', function ($id) use ($productController) {
-    $token = getBearerToken();
-    if (!$productController->verifyToken($token)) {
+$router->add('GET', '/produtos/{id:\d+}', function ($id) use ($productController, $authController) {
+    $token = $authController->getBearerToken();
+    if (!$authController->verifyToken($token)) {
         http_response_code(401);
         echo json_encode(array("mensagem" => "Token de autenticação inválido."));
         return;
@@ -85,11 +83,10 @@ $router->add('GET', '/produtos/{id:\d+}', function ($id) use ($productController
     }
 });
 
-$router->add('PUT', '/produtos/{id:\d+}', function ($id) use ($productController) {
+$router->add('PUT', '/produtos/{id:\d+}', function ($id) use ($productController, $authController) {
     $data = json_decode(file_get_contents("php://input"), true);
-
-    $token = getBearerToken();
-    if (!$productController->verifyToken($token)) {
+    $token = $authController->getBearerToken();
+    if (!$authController->verifyToken($token)) {
         http_response_code(401);
         echo json_encode(array("mensagem" => "Token de autenticação inválido."));
         return;
@@ -105,9 +102,9 @@ $router->add('PUT', '/produtos/{id:\d+}', function ($id) use ($productController
     }
 });
 
-$router->add('DELETE', '/produtos/{id:\d+}', function ($id) use ($productController) {
-    $token = getBearerToken();
-    if (!$productController->verifyToken($token)) {
+$router->add('DELETE', '/produtos/{id:\d+}', function ($id) use ($productController, $authController) {
+    $token = $authController->getBearerToken();
+    if (!$authController->verifyToken($token)) {
         http_response_code(401);
         echo json_encode(array("mensagem" => "Token de autenticação inválido."));
         return;
@@ -122,15 +119,6 @@ $router->add('DELETE', '/produtos/{id:\d+}', function ($id) use ($productControl
         echo json_encode(array("mensagem" => "Não foi possível excluir o produto."));
     }
 });
-
-
-function getBearerToken() {
-    $headers = getallheaders();
-    if (isset($headers['Authorization'])) {
-        return trim(str_replace("Bearer ", "", $headers['Authorization']));
-    }
-    return null;
-}
 
 $router->dispatch();
 ?>
